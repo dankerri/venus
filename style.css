@@ -1,0 +1,42 @@
+.container {
+	padding: 1em 4em 0 4em;
+}
+.range-part {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 10%;
+	grid-row-gap: 2em;
+}
+
+.card {
+	border: 2px solid gray;
+}
+.card img {
+	width: 100%;
+}
+
+.info {
+	text-align: center;
+}
+.author, 
+.like, 
+.by, 
+.like-icon {
+	display: inline-block;
+	font-family: Helvatica, sans-serif;
+}
+.author {
+	font-size: 2em;
+}
+.like-icon {
+	cursor: pointer;
+	color: red;
+}
+.like {
+	color: red;
+}
+.date {
+	border-top: 1px dotted gray;
+	padding-top: 8px;
+	color: gray;
+}
