@@ -9,7 +9,13 @@
 </head>
 <body>
 <div class="container">
-	<div class="interaction-part"></div><!-- inferaction-part-->
+	<div class="for-screenshot">
+		<button class="screen-button" onclick="exportAndSaveCanvas()"> take screenshoot </button>
+	</div>
+	<div id="editor">
+		<canvas id="canvas"></canvas>
+	</div><!-- editor -->
+
 	<div class="range-part">
 		<?php  
 			include_once('./db.php');
@@ -35,6 +41,18 @@
 		?>
 	</div><!-- range-part -->
 </div><!-- container -->
-<script type="text/javascript" src="./js/ajax.js"></script>
+
+ <!-- For THREEJS editor -->
+<script type="text/javascript" src="./js/three.min.js"></script>
+<script type="text/javascript" src="./js/OrbitControls.js"></script>
+<script type="text/javascript" src="./js/FBXLoader.js"></script>
+<script type="text/javascript" src="./js/inflate.min.js"></script>
+<script type="text/javascript" src="./js/dat.gui.min.js"></script>
+<script type="text/javascript" src="./js/editor.js"></script>
+ <!-- For Screenshoot -->
+<script type="text/javascript" src="./js/canvas2image.js"></script>
+<script type="text/javascript" src="./js/base64.js"></script>
+ <!-- Ajax proccess -->
+ <script type="text/javascript" src="./js/ajax.js"></script>
 </body>
 </html>

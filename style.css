@@ -1,9 +1,33 @@
 .container {
 	padding: 1em 4em 0 4em;
 }
+
+/* editor */
+.editor {
+	margin-bottom: 2em;
+}
+.for-screenshot {
+	width: 100%;
+	margin-bottom: 2em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid gray;
+}
+.screen-button {
+	display: block;
+	width: 10em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* cards */
+
+
 .range-part {
+	margin-top: 10em;
+	padding-top: 4em;
+	border-top: 1px solid gray;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	grid-column-gap: 10%;
 	grid-row-gap: 2em;
 }
