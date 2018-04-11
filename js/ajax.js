@@ -52,31 +52,26 @@ $(document).ready(function(){
 
 	exportAndSaveCanvas = function () {
 
-	var canvas = document.getElementById("canvas");
+	// var canvasData = canvasElement.toDataURL("image/png");
+	var canvasData = document.getElementById("canvas").toDataURL("image/png");
 
-	// Get the canvas screenshot as PNG
-	var screenshot = Canvas2Image.saveAsPNG(canvas, true);
-
-	// This is a little trick to get the SRC attribute from the generated <img> screenshot
-	canvas.parentNode.appendChild(screenshot);
-	screenshot.id = "canvasimage";		
-	data = $('#canvasimage').attr('src');
-	canvas.parentNode.removeChild(screenshot);
-
-
-	// Send the screenshot to PHP to save it on the server
 	var url = '../export.php';
-	$.ajax({ 
-	    type: "POST", 
-	    url: url,
-	    dataType: 'text',
-	    data: {
-				base64data : data
+	$.ajax({
+	    url:'../export.php', 
+
+	    type:'POST', 
+
+	    data:{
+
+	        data:canvasData
+
 	    },
-	    success: function(data) {
-	    	console.log(data);
+	    success: function( data ) {
+
+	    	console.log( data );
 	    }
 	});
+
 }
 
 });
