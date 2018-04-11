@@ -3,14 +3,18 @@ $(document).ready( function() {
 	var cameram, scene, renderer;
 	var orbit_controls, transform_controls;
 	var gui;
+	var canvas = document.getElementById( "canvas" );
 
 	init( );
 	render( );
 
 	function init( ) {
 
-		var canvas = document.getElementById( "canvas" );
-		renderer = new THREE.WebGLRenderer( { canvas: canvas } );
+		renderer = new THREE.WebGLRenderer( { 
+			canvas: canvas,
+			antialias: true,
+			preserverDrawingBuffer : true
+		} );
 		renderer.setSize( window.innerWidth * 0.6 , window.innerHeight * 0.6 );
 		// document.getElementById("editor").appendChild( renderer.domElement );
 
@@ -105,5 +109,45 @@ $(document).ready( function() {
 	  renderer.render( scene, camera );
 
 	}
+
+	// take screenshot
+	exportAndSaveCanvas = function () {
+
+		// var canvasData = document.getElementById("canvas").toDataURL("image/png");
+		renderer.render( scene, camera )
+		var canvasData = renderer.domElement.toDataURL("image/png");
+		// console.log(renderer.domElement.toDataURL("image/png"));
+
+		var url = '../export.php';
+		$.ajax({
+		    url:'../export.php', 
+
+		    type:'POST', 
+
+		    data:{
+
+		        data:canvasData
+
+		    },
+		    success: function( data ) {
+
+		    	console.log( data );
+		    }
+		});
+
+	}
+
+	//For testing screenshot, it works
+	// exportAndSaveCanvas = function() {
+	// 	var w = window.open('', '');
+ //    w.document.title = "Screenshot";
+ //    //w.document.body.style.backgroundColor = "red";
+ //    var img = new Image();
+ //    // Without 'preserveDrawingBuffer' set to true, we must render now
+ //    renderer.render(scene, camera);
+ //    img.src = renderer.domElement.toDataURL();
+ //    console.log( renderer.domElement.toDataURL() );
+ //    w.document.body.appendChild(img);  
+	// }
 
 }) ;

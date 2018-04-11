@@ -50,7 +50,7 @@
 <script type="text/javascript" src="./js/dat.gui.min.js"></script>
 <script type="text/javascript" src="./js/editor.js"></script>
  <!-- For Screenshoot -->
-<script type="text/javascript" src="./js/canvas2image.js"></script>
+<!-- <script type="text/javascript" src="./js/canvas2image.js"></script> -->
 <script type="text/javascript" src="./js/base64.js"></script>
  <!-- Ajax proccess -->
  <script type="text/javascript" src="./js/ajax.js"></script>
