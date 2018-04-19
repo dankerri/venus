@@ -10,7 +10,8 @@
 <body>
 <div class="container">
 	<div class="for-screenshot">
-		<button class="screen-button" onclick="exportAndSaveCanvas()"> take screenshoot </button>
+		<input type="text" name="text" id="author" placeholder="what is your name? ">
+		<button class="screen-button" onclick="exportAndSaveCanvas()"> screenshoot </button>
 	</div>
 	<div id="editor">
 		<canvas id="canvas"></canvas>

@@ -15,12 +15,12 @@ $(document).ready( function() {
 			antialias: true,
 			preserverDrawingBuffer : true
 		} );
-		renderer.setSize( window.innerWidth * 0.6 , window.innerHeight * 0.6 );
+		renderer.setSize( window.innerWidth * 0.6 , window.innerHeight * 0.8 );
 		// document.getElementById("editor").appendChild( renderer.domElement );
 
-		camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 800 );
 		camera.position.set( 100, 100, 100 );
-		camera.lookAt( new THREE.Vector3( 0, 200, 0 ) );
+		camera.lookAt( new THREE.Vector3( -50, -50, 20 ) );
 
 		// Create Scene
 		scene = new THREE.Scene( );
@@ -47,18 +47,20 @@ $(document).ready( function() {
 
 		loader.load(
 
-			'./model/bone.fbx',
-			// './model/venus.FBX',
+			'./model/current.FBX',
 
 			function( object ) {
 				
 				object.traverse( function( child ) {
 
+						console.log( child );
+
 						try {
 
 							if ( child instanceof THREE.SkinnedMesh ) {
 
-								child.material.wireframe = true;// For debug rotation of X
+								child.material.wireframe = true;
+								// child.material = new THREE.MeshNormalMaterial();
 
 							}
 							// console.log( child );
@@ -76,6 +78,19 @@ $(document).ready( function() {
 							console.log( e );
 
 						}
+						// try {
+						// 	if( child instanceof THREE.Mesh) {
+
+						// 		child.material = new THREE.MeshNormalMaterial();
+
+						// 	}
+						// }
+
+						// catch( e ) {
+
+						// 	console.log( e );
+
+						// }
 
 				} );
 
@@ -96,7 +111,7 @@ $(document).ready( function() {
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix( );
 
-		renderer.setSize( window.innerWidth * 0.6, window.innerHeight * 0.6 );
+		renderer.setSize( window.innerWidth * 0.6 , window.innerHeight * 0.8 );
 
 		render( );
 
@@ -116,17 +131,18 @@ $(document).ready( function() {
 		// var canvasData = document.getElementById("canvas").toDataURL("image/png");
 		renderer.render( scene, camera )
 		var canvasData = renderer.domElement.toDataURL("image/png");
-		// console.log(renderer.domElement.toDataURL("image/png"));
 
+		// Update data to server 
 		var url = '../export.php';
 		$.ajax({
-		    url:'../export.php', 
+		    url: url, 
 
 		    type:'POST', 
 
 		    data:{
 
-		        data:canvasData
+		        data:canvasData,
+		        author:$("#author").val(),
 
 		    },
 		    success: function( data ) {
@@ -136,18 +152,5 @@ $(document).ready( function() {
 		});
 
 	}
-
-	//For testing screenshot, it works
-	// exportAndSaveCanvas = function() {
-	// 	var w = window.open('', '');
- //    w.document.title = "Screenshot";
- //    //w.document.body.style.backgroundColor = "red";
- //    var img = new Image();
- //    // Without 'preserveDrawingBuffer' set to true, we must render now
- //    renderer.render(scene, camera);
- //    img.src = renderer.domElement.toDataURL();
- //    console.log( renderer.domElement.toDataURL() );
- //    w.document.body.appendChild(img);  
-	// }
 
 }) ;
