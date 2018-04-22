@@ -66,11 +66,19 @@ $(document).ready( function() {
 							// console.log( child );
 
 							if( child instanceof THREE.Bone ) {
-									folder = gui.addFolder( child.name )
-									folder.add( child.rotation, 'x', - Math.PI, Math.PI );
-									folder.add( child.rotation, 'y', - Math.PI, Math.PI );
-									folder.add( child.rotation, 'z', - Math.PI, Math.PI );
+									if( 
+										child.name == 'left' || child.name == 'right' || 
+										child.name == 'Bone001' || child.name == 'Bone002' || child.name == 'Bone003'
+									) {
+
+									} else {
+										folder = gui.addFolder( child.name )
+										folder.add( child.rotation, 'x', - Math.PI, Math.PI );
+										folder.add( child.rotation, 'y', - Math.PI, Math.PI );
+										folder.add( child.rotation, 'z', - Math.PI, Math.PI );
+									}
 							}
+
 						}
 
 						catch( e ) {
@@ -78,19 +86,6 @@ $(document).ready( function() {
 							console.log( e );
 
 						}
-						// try {
-						// 	if( child instanceof THREE.Mesh) {
-
-						// 		child.material = new THREE.MeshNormalMaterial();
-
-						// 	}
-						// }
-
-						// catch( e ) {
-
-						// 	console.log( e );
-
-						// }
 
 				} );
 
